@@ -18,6 +18,7 @@ function App() {
   const [loader, setLoader] = useState(false);
   const scrollToAns = useRef();
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const askQuestion = async () => {
     if (!question && !selectedHistory) {
@@ -108,17 +109,39 @@ function App() {
 
   return (
     <div className={darkMode == "dark" ? "dark" : "light"}>
-      <div className="grid grid-cols-5 text-center">
-        <Theme setDarkMode={setDarkMode} />
-        <RecentSearch
-          clearHistory={clearHistory}
-          recentHistory={recentHistory}
-          setSelectedHistory={setSelectedHistory}
-          setRecentHistory={setRecentHistory}
-        />
-        <div className="col-span-4 h-screen p-10 ">
+      <button
+        onClick={() => setShowSidebar(!showSidebar)}
+        className="md:hidden p-1 fixed top-4 left-4 z-50 bg-zinc-400 rounded shadow"
+      >
+        ☰
+      </button>
+      {showSidebar && (
+        <div className="fixed z-40 w-64 h-full bg-zinc-200 dark:bg-zinc-800">
+          <Theme setDarkMode={setDarkMode} />
+          <RecentSearch
+            clearHistory={clearHistory}
+            recentHistory={recentHistory}
+            setSelectedHistory={(item) => {
+              setSelectedHistory(item);
+              setShowSidebar(false);
+            }}
+            setRecentHistory={setRecentHistory}
+          />
+        </div>
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-5 text-center">
+         <Theme setDarkMode={setDarkMode} />
+        <div className="hidden md:block col-span-1">
+          <RecentSearch
+            clearHistory={clearHistory}
+            recentHistory={recentHistory}
+            setSelectedHistory={setSelectedHistory}
+            setRecentHistory={setRecentHistory}
+          />
+        </div>
+        <div className="col-span-1 md:col-span-4 h-screen px-4 pt-12 md:p-10">
           <div className="relative w-full mt-4">
-            <h1 className="text-4xl leading-relaxed text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700">
+            <h1 className="text-3xl md:text-4xl leading-relaxed text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700">
               Hello User, Ask me Anything
             </h1>
             <Speech

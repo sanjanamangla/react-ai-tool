@@ -22,7 +22,7 @@ const Speech=({setIsSpeaking, isSpeaking, result})=>{
                 }
               }}
               title={isSpeaking ? "Mute" : "Speak last answer"}
-              className="absolute right-6 top-[28%] translate-x-2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-blue-600 text-blue-500 hover:text-white backdrop-blur-md border border-white/20 shadow-xl transition-all duration-300 hover:scale-110"
+              className="hidden md:absolute md:right-6 md:top-[28%] md:block translate-x-2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-blue-600 text-blue-500 hover:text-white backdrop-blur-md border border-white/20 shadow-xl transition-all duration-300 hover:scale-110"
             >
               {isSpeaking ? (
                 // 🔇 
