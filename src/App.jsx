@@ -130,7 +130,7 @@ function App() {
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-5 text-center">
-         <Theme setDarkMode={setDarkMode} />
+         <Theme hideOnMobile={true} setDarkMode={setDarkMode} />
         <div className="hidden md:block col-span-1">
           <RecentSearch
             clearHistory={clearHistory}

@@ -1,9 +1,9 @@
-const Theme = ({setDarkMode}) => {
+const Theme = ({setDarkMode, hideOnMobile=false}) => {
   return (
     <>
       <select
         onChange={(e) => setDarkMode(e.target.value)}
-        className="fixed dark:text-white text-zinc-800 bottom-0 p-5 font-bold"
+        className={`fixed dark:text-white text-zinc-800 bottom-0 p-5 font-bold ${hideOnMobile ? 'hidden md:block' : ''}`}
       >
         <option className="dark:bg-zinc-900 bg-zinc-200 font-bold" value="dark">
           Dark
